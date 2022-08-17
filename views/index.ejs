@@ -1,0 +1,159 @@
+<%- include("includes/header.ejs") %>
+    </head>
+
+    <body>
+        <ul class="header_UL">
+            <li onclick="changePath('/')"><i class="fa-solid fa-house"></i> Home</li>
+            <li onclick="showHideForm(document.getElementById('formSearch'))">
+                <i class="fa-brands fa-searchengin"></i>
+                Search
+            </li>
+            <li style="float: right; margin-top: -12px;">
+                <form action="/submit" method="post" id="formSearch" style="display: none;">
+                    <input type="search" name="city_name_TB" id="city_name_TB">
+                    <button type="submit">Submit</button>
+                </form>
+            </li>
+        </ul>
+        <% if (weatherData) { %>
+            <div class="weatherDivDetailed">
+                <caption>
+                    <h1><u>Weather in <%= weatherData.address %></u></h1>
+                </caption>
+                <table border="1px">
+                    <tr>
+                        <th>Place</th>
+                        <td>
+                            <%= weatherData.address %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Latitude</th>
+                        <td>
+                            <%= weatherData.latitude %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Longitude</th>
+                        <td>
+                            <%= weatherData.longitude %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Time Zone</th>
+                        <td>
+                            <%= weatherData.timezone %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Timezone Off Set</th>
+                        <td>
+                            <%= weatherData.tzoffset %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Maximum Temperature : </th>
+                        <td>
+                            <%= weatherData.days[0]["tempmax"] %>°C
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Minimum Temperature : </th>
+                        <td>
+                            <%= weatherData.days[0]["tempmin"] %>°C
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Maximum Temperature (Feels Like) : </th>
+                        <td>
+                            <%= weatherData.days[0]["feelslikemax"] %>°C
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Minimum Temperature (Feels Like) : </th>
+                        <td>
+                            <%= weatherData.days[0]["feelslikemin"] %>°C
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Dew : </th>
+                        <td>
+                            <%= weatherData.days[0]["dew"] %>%
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Humidity (Percentage) : </th>
+                        <td>
+                            <%= weatherData.days[0]["humidity"] %>%
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Precipitation : </th>
+                        <td>
+                            <%= weatherData.days[0]["precip"] %>mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Type of Precipitation : </th>
+                        <td>
+                            <%= weatherData.days[0]["preciptype"] %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Wind Speed : </th>
+                        <td>
+                            <%= weatherData.days[0]["windspeed"] %>m/s
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Atmospheric Pressure : </th>
+                        <td>
+                            <%= weatherData.days[0]["pressure"] %>hPa
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Wind Speed : </th>
+                        <td>
+                            <%= weatherData.days[0]["windspeed"] %>m/s
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Sunrise : </th>
+                        <td>
+                            <%= weatherData.currentConditions["sunrise"] %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Sunset : </th>
+                        <td>
+                            <%= weatherData.currentConditions["sunset"] %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Moon Phase : </th>
+                        <td>
+                            <%= weatherData.currentConditions["moonphase"] %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="mainContent">
+                <div>
+                    <h1>
+                        <%= weatherData.days[0].temp %>°C
+                        <sup><%= weatherData.address %></sup>
+                    </h1>
+                    <h5>
+                        
+                    </h5>
+                </div>
+            </div>
+            <% } else  { %>
+                <h1 style="text-align: center; color: white;">Your Weather Finder</h1>
+                <p style="text-align: center; color: white;">Click on the search button and find the weather of the desired place!</p>
+                <% } %>
+
+                <script src="/js/script.js"></script>
+    </body>
+
+    </html>
